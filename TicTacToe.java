@@ -95,56 +95,56 @@ public class TicTacToe  implements ActionListener{
 				(buttons[1].getText()=="X") &&
 				(buttons[2].getText()=="X")
 				) {
-			oWins(0,1,2);
+			xWins(0,1,2);
 		}
 		if(
 				(buttons[3].getText()=="X") &&
 				(buttons[4].getText()=="X") &&
 				(buttons[5].getText()=="X")
 				) {
-			oWins(3,4,5);
+			xWins(3,4,5);
 		}
 		if(
 				(buttons[6].getText()=="X") &&
 				(buttons[7].getText()=="X") &&
 				(buttons[8].getText()=="X")
 				) {
-			oWins(6,7,8);
+			xWins(6,7,8);
 		}
 		if(
 				(buttons[0].getText()=="X") &&
 				(buttons[3].getText()=="X") &&
 				(buttons[6].getText()=="X")
 				) {
-			oWins(0,3,6);
+			xWins(0,3,6);
 		}
 		if(
 				(buttons[1].getText()=="X") &&
 				(buttons[4].getText()=="X") &&
 				(buttons[7].getText()=="X")
 				) {
-			oWins(1,4,7);
+			xWins(1,4,7);
 		}
 		if(
 				(buttons[2].getText()=="X") &&
 				(buttons[5].getText()=="X") &&
 				(buttons[8].getText()=="X")
 				) {
-			oWins(2,5,8);
+			xWins(2,5,8);
 		}
 		if(
 				(buttons[0].getText()=="X") &&
 				(buttons[4].getText()=="X") &&
 				(buttons[8].getText()=="X")
 				) {
-			oWins(0,4,8);
+			xWins(0,4,8);
 		}
 		if(
 				(buttons[2].getText()=="X") &&
 				(buttons[4].getText()=="X") &&
 				(buttons[6].getText()=="X")
 				) {
-			oWins(2,4,6);
+			xWins(2,4,6);
 		}
         //O win conditions
         if(
@@ -217,9 +217,9 @@ public class TicTacToe  implements ActionListener{
     }
 
     private void oWins(int i, int j, int k) {
-        buttons[i].setBackground(Color.GREEN);
-        buttons[j].setBackground(Color.GREEN);
-        buttons[k].setBackground(Color.GREEN);
+        buttons[i].setBackground(Color.PINK);
+        buttons[j].setBackground(Color.PINK);
+        buttons[k].setBackground(Color.PINK);
 
         for(int t=0;t<9;t++){
             buttons[t].setEnabled(false);
