@@ -87,124 +87,45 @@ public class TicTacToe  implements ActionListener{
             }
         }
     }
+
                         
     public void check() {
-        //X win conditions
-        if(
-				(buttons[0].getText()=="X") &&
-				(buttons[1].getText()=="X") &&
-				(buttons[2].getText()=="X")
-				) {
-			xWins(0,1,2);
-		}
-		if(
-				(buttons[3].getText()=="X") &&
-				(buttons[4].getText()=="X") &&
-				(buttons[5].getText()=="X")
-				) {
-			xWins(3,4,5);
-		}
-		if(
-				(buttons[6].getText()=="X") &&
-				(buttons[7].getText()=="X") &&
-				(buttons[8].getText()=="X")
-				) {
-			xWins(6,7,8);
-		}
-		if(
-				(buttons[0].getText()=="X") &&
-				(buttons[3].getText()=="X") &&
-				(buttons[6].getText()=="X")
-				) {
-			xWins(0,3,6);
-		}
-		if(
-				(buttons[1].getText()=="X") &&
-				(buttons[4].getText()=="X") &&
-				(buttons[7].getText()=="X")
-				) {
-			xWins(1,4,7);
-		}
-		if(
-				(buttons[2].getText()=="X") &&
-				(buttons[5].getText()=="X") &&
-				(buttons[8].getText()=="X")
-				) {
-			xWins(2,5,8);
-		}
-		if(
-				(buttons[0].getText()=="X") &&
-				(buttons[4].getText()=="X") &&
-				(buttons[8].getText()=="X")
-				) {
-			xWins(0,4,8);
-		}
-		if(
-				(buttons[2].getText()=="X") &&
-				(buttons[4].getText()=="X") &&
-				(buttons[6].getText()=="X")
-				) {
-			xWins(2,4,6);
-		}
-        //O win conditions
-        if(
-				(buttons[0].getText()=="O") &&
-				(buttons[1].getText()=="O") &&
-				(buttons[2].getText()=="O")
-				) {
-			oWins(0,1,2);
-		}
-		if(
-				(buttons[3].getText()=="O") &&
-				(buttons[4].getText()=="O") &&
-				(buttons[5].getText()=="O")
-				) {
-			oWins(3,4,5);
-		}
-		if(
-				(buttons[6].getText()=="O") &&
-				(buttons[7].getText()=="O") &&
-				(buttons[8].getText()=="O")
-				) {
-			oWins(6,7,8);
-		}
-		if(
-				(buttons[0].getText()=="O") &&
-				(buttons[3].getText()=="O") &&
-				(buttons[6].getText()=="O")
-				) {
-			oWins(0,3,6);
-		}
-		if(
-				(buttons[1].getText()=="O") &&
-				(buttons[4].getText()=="O") &&
-				(buttons[7].getText()=="O")
-				) {
-			oWins(1,4,7);
-		}
-		if(
-				(buttons[2].getText()=="O") &&
-				(buttons[5].getText()=="O") &&
-				(buttons[8].getText()=="O")
-				) {
-			oWins(2,5,8);
-		}
-		if(
-				(buttons[0].getText()=="O") &&
-				(buttons[4].getText()=="O") &&
-				(buttons[8].getText()=="O")
-				) {
-			oWins(0,4,8);
-		}
-		if(
-				(buttons[2].getText()=="O") &&
-				(buttons[4].getText()=="O") &&
-				(buttons[6].getText()=="O")
-				) {
-			oWins(2,4,6);
-		}
+        int[][] winPatterns = {
+            {0, 1, 2}, {3, 4, 5}, {6, 7, 8},
+            {0, 3, 6}, {1, 4, 7}, {2, 5, 8},
+            {0, 4, 8}, {2, 4, 6}
+        };
+
+        for (int[] pattern : winPatterns) {
+            if (buttons[pattern[0]].getText().equals("X") &&
+                buttons[pattern[1]].getText().equals("X") &&
+                buttons[pattern[2]].getText().equals("X")) {
+                xWins(pattern[0], pattern[1], pattern[2]);
+                return;
+            }
+            if (buttons[pattern[0]].getText().equals("O") &&
+                buttons[pattern[1]].getText().equals("O") &&
+                buttons[pattern[2]].getText().equals("O")) {
+                oWins(pattern[0], pattern[1], pattern[2]);
+                return;
+            }
+        }
+
+        boolean draw = true;
+        for (JButton button : buttons) {
+            if (button.getText().equals("")) {
+                draw = false;
+                break;
+            }
+        }
+        if (draw) {
+            textfield.setText("Draw Match");
+            for (JButton button : buttons) {
+                button.setEnabled(false);
+            }
+        }  
+		
     }
-    
     private void xWins(int i, int j, int k) {
         buttons[i].setBackground(Color.GREEN);
         buttons[j].setBackground(Color.GREEN);
@@ -217,13 +138,16 @@ public class TicTacToe  implements ActionListener{
     }
 
     private void oWins(int i, int j, int k) {
-        buttons[i].setBackground(Color.PINK);
-        buttons[j].setBackground(Color.PINK);
-        buttons[k].setBackground(Color.PINK);
+        
+        buttons[i].setBackground(Color.GREEN);
+        buttons[j].setBackground(Color.GREEN);
+        buttons[k].setBackground(Color.GREEN);
 
         for(int t=0;t<9;t++){
             buttons[t].setEnabled(false);
+            
         }
         textfield.setText("O Wins");
+    
     }
 }
